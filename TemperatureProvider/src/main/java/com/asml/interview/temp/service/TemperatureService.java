@@ -1,13 +1,11 @@
 package com.asml.interview.temp.service;
 
-import com.asml.interview.temp.controller.TemperatureController;
 import com.asml.interview.temp.exception.CityNotFoundException;
 import com.asml.interview.temp.model.TemperatureInformation;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;

@@ -1,7 +1,6 @@
 package com.asml.interview.temp.model;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 public class TemperatureInformation {
 

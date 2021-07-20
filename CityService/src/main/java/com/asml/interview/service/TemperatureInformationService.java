@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -22,6 +22,9 @@ public class TemperatureInformationService {
     private TemperatureClient temperatureClient;
     private CityService cityService;
     private ApplicationConfiguration applicationConfiguration;
+    private static final DateTimeFormatter formatter = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+            .withZone(ZoneId.of("UTC"));
 
     public TemperatureInformationService(TemperatureClient temperatureClient, CityService cityService, ApplicationConfiguration configuration) {
         this.temperatureClient = temperatureClient;
@@ -31,20 +34,21 @@ public class TemperatureInformationService {
 
     @Scheduled(fixedRateString = "#{applicationConfiguration.getCronJobRate()}")
     public void getCityTemperature() {
-        DecimalFormat decimalFormat = new DecimalFormat("#.#");
         List<City> allCities = cityService.getAllCities();
+
         allCities.forEach(entry -> {
             Instant requestTime = Instant.now();
             try {
                 TemperatureInformation temperatureInformation = temperatureClient.getTemperatureByCity(entry.getName());
-                LOGGER.info("[city: {}, requestTime: {}, temperature: {}, temperatureTime: {}]", entry.getName(), requestTime, temperatureInformation.getTemperature(), temperatureInformation.getTime());
+                LOGGER.info("[city: {}, requestTime: {}, temperature: {}, temperatureTime: {}]"
+                        , entry.getName()
+                        , formatter.format(requestTime)
+                        , temperatureInformation.getTemperature()
+                        , formatter.format(temperatureInformation.getTime()));
             } catch (FeignException e) {
-                LOGGER.error("Unable to get temperature information for the city: {}", entry.getName(), e);
+                LOGGER.error("Unable to get temperature information for the city: {}; The city is to be removed", entry.getName(), e);
+                cityService.removeCity(entry.getId());
             }
         });
-    }
-
-    private static String formatTemperatureValue(Double temperature, DecimalFormat decimalFormat) {
-        return decimalFormat.format(temperature).replace(",", ".");
     }
 }
