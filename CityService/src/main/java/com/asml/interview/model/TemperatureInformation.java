@@ -27,5 +27,6 @@ public class TemperatureInformation {
         this.time = time;
         this.temperature = temperature;
     }
+    public TemperatureInformation(){}
 
 }

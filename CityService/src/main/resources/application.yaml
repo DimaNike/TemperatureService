@@ -2,7 +2,7 @@ spring:
   application:
     name: CityService
 server:
-  port: 0
+  port: 50618
 eureka:
   client:
     serviceUrl:

@@ -1,0 +1,21 @@
+<div th:switch="${cities}">
+    <h2 th:case="null">No cities yet!</h2>
+    <div th:case="*">
+        <h2>Cities</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="city : ${cities}">
+                <td th:text="${city.name}"></td>
+                <td><a th:href="@{/delete/{id}(id=${city.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/addCityForm">Add a new user</a></p>
+</div>
