@@ -5,7 +5,6 @@ import com.asml.interview.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,12 +27,8 @@ public class CityController {
     }
 
     @PostMapping("/addCity")
-    public String addCity(@Valid City city, BindingResult result) {
-        if (result.hasErrors()) {
-            return "add-city";
-        }
-        cityService.saveCity(city);
-
+    public String addCity(@Valid City city) {
+        cityService.addCity(city);
         return "redirect:/index";
     }
 

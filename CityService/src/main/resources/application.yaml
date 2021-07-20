@@ -11,4 +11,5 @@ eureka:
     preferIpAddress: true
 city:
     service:
-        cron: 0 * * * * *
+        cron:
+          rate: 1

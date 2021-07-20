@@ -2,7 +2,7 @@ spring:
   application:
     name: TemperatureProvider
 server:
-  port: 0
+  port: 52449
 eureka:
   client:
     serviceUrl:

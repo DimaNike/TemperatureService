@@ -1,17 +1,18 @@
 package com.asml.interview.temp.model;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class TemperatureInformation {
 
-    private LocalDateTime time;
+    private Instant time;
     private Double temperature;
 
-    public LocalDateTime getTime() {
+    public Instant getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(Instant time) {
         this.time = time;
     }
 
@@ -23,7 +24,7 @@ public class TemperatureInformation {
         this.temperature = temperature;
     }
 
-    public TemperatureInformation(LocalDateTime time, Double temperature) {
+    public TemperatureInformation(Instant time, Double temperature) {
         this.time = time;
         this.temperature = temperature;
     }

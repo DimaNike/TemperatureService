@@ -21,25 +21,19 @@ public class CityService {
         this.cityRepository = cityRepository;
     }
 
-    public void saveCity(City city) {
-        Optional<CityModel> foundCityModel = cityRepository.findById(city.getId());
-        if (foundCityModel.isPresent()) {
-            CityModel cityModel = foundCityModel.get();
-            cityModel.setName(city.getName());
-            cityRepository.save(cityModel);
+    public void addCity(City city) {
+        if (cityRepository.count() == MAX_CITIES) {
+            LOGGER.warn("Number of cities has reached limit: {}", MAX_CITIES);
         } else {
-            if (cityRepository.count() == MAX_CITIES) {
-                LOGGER.warn("Number of cities has reached limit: {}",MAX_CITIES);
+            CityModel cityModel = cityRepository.findCityModelByName(city.getName());
+            if (cityModel == null) {
+                cityModel = new CityModel();
+                cityModel.setName(city.getName());
+                cityRepository.save(cityModel);
             } else {
-                addCity(city);
+                LOGGER.warn("City with the name {} already exist", city.getName());
             }
         }
-    }
-
-    public void addCity(City city) {
-        CityModel cityModel = new CityModel();
-        cityModel.setName(city.getName());
-        cityRepository.save(cityModel);
     }
 
     public void removeCity(long id) {
