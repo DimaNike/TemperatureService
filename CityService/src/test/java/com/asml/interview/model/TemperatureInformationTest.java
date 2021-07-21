@@ -36,6 +36,18 @@ public class TemperatureInformationTest {
         int integerPlaces = text.indexOf('.');
         int decimalPlaces = text.length() - integerPlaces - 1;
         assertEquals(1, decimalPlaces);
-        assertEquals(now,temperatureInformation.getTime());
+        assertEquals(now, temperatureInformation.getTime());
+    }
+
+    @Test
+    public void temperatureWasConvertedFromCelsiusToFahrenheit() {
+        //given:
+        TemperatureInformation temperatureInformation = new TemperatureInformation();
+        Instant now = Instant.now();
+        temperatureInformation.setTime(now);
+        //when:
+        temperatureInformation.setTemperature(40.165465468789798);
+        //then:
+        assertEquals(104.3, temperatureInformation.getTemperature());
     }
 }
