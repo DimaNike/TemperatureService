@@ -27,7 +27,7 @@ public class TemperatureInformation {
 
     public TemperatureInformation(Instant time, Double temperature) {
         this.time = time;
-        this.temperature = temperature;
+        this.setTemperature(temperature);
     }
 
     public TemperatureInformation() {
