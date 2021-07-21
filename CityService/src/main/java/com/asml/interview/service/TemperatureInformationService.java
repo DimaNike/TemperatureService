@@ -19,8 +19,8 @@ import java.util.List;
 public class TemperatureInformationService {
     private static final Logger LOGGER = LoggerFactory.getLogger(TemperatureInformationService.class);
 
-    private TemperatureClient temperatureClient;
-    private CityService cityService;
+    private final TemperatureClient temperatureClient;
+    private final CityService cityService;
     private ApplicationConfiguration applicationConfiguration;
     private static final DateTimeFormatter formatter = DateTimeFormatter
             .ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")

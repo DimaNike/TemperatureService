@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: CityService
+server:
+  port: 50618
+eureka:
+  client:
+      enabled: false
+  instance:
+    preferIpAddress: true
+city:
+    service:
+        cron:
+          rate: 1
