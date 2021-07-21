@@ -22,7 +22,7 @@ public class TemperatureInformation {
 
     public void setTemperature(Double temperature) {
         DecimalFormat decimalFormat = new DecimalFormat("#.#");
-        this.temperature = Double.parseDouble(decimalFormat.format(temperature).replace(",", "."));
+        this.temperature = Double.parseDouble(decimalFormat.format(temperature*9/5+32).replace(",", "."));
     }
 
     public TemperatureInformation(Instant time, Double temperature) {

@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TemperatureController {
     public static final String RESPONSE_200 = "Temperature in the Netherlands";
     public static final String RESPONSE_404 = "Temperature for %s could not be found";
-    public static final String RESPONSE_500 = "Internal server error";
-    public static final String RESPONSE_503 = "Service unavailable";
-
 
     private final TemperatureService temperatureService;
 
