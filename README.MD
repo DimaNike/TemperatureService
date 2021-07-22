@@ -36,24 +36,24 @@ In order to make CityService start receiving temperature information we need to 
    
 Empty city list page looks like this:
 
-![Empty city list](emptyCityPage.png)
+![Empty city list](https://raw.githubusercontent.com/DimaNike/TemperatureService/master/emptyCityPage.png)
 
 Add city form:
 
-![add city form](AddingForm.png)
+![add city form](https://raw.githubusercontent.com/DimaNike/TemperatureService/master/AddingForm.png)
 
 City list page with one city:
 
-![one city](onecity.png)
+![one city](https://raw.githubusercontent.com/DimaNike/TemperatureService/master/onecity.png)
 
 If we add a city that is outside of our hardcoded list (temperature information is not availabe) the city will be removed from the data base but the web UI won't be updated (the index page has to be reloaded):
 
-![deleted city](deletedCity.png)
+![deleted city](https://raw.githubusercontent.com/DimaNike/TemperatureService/master/deletedCity.png)
 
 I use h2 in memory DB.
 
 The following figure illustrates high level overview of the service interaction:
 
-![overview](HighLevelOverview.png)
+![overview](https://raw.githubusercontent.com/DimaNike/TemperatureService/master/HighLevelOverview.png)
 
 On step 1 cronjob receives all cities added to the H2 data base. If the list is not empty on the step 2 it requests temperature information from Temperature provider service.
