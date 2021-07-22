@@ -1,6 +1,12 @@
 spring:
   application:
     name: CityService
+  main:
+    allow-bean-definition-overriding: true
+local:
+  server:
+    port:
+      45646
 server:
   port: 50618
 eureka:
